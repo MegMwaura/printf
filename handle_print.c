@@ -12,14 +12,15 @@
  *
  * Return: Number of characters printed (excluding null byte).
  */
-int handle_print(const char *fmt, va_list list, char *buffer,
-                 int flags, int width, int precision, int size)
+int handle_print(const char *fmt, va_list list, char *buffer, 
+			int flags, int width, int precision, int size)
 {
 	int i = 0;
 	int count_chars = 0;
 	int unknow_len = 0;
 
-	struct {
+	struct
+	{
 	char fmt;
 	int (*fn)(va_list, char *, int, int, int, int);
 	} fmt_types[] = {
@@ -39,7 +40,6 @@ int handle_print(const char *fmt, va_list list, char *buffer,
 	i++;
 	}
 	
-
 	if (fmt_types[i].fmt == '\0')
 	{
 	if (fmt[i] == '\0')

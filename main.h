@@ -41,9 +41,7 @@ typedef struct format format_t;
 
 int _printf(const char *fmt, ...);
 int handle_print(const char *fmt, va_list list, char *buffer,
-                 int flags, int width, int precision, int size);
-
-
+		int flags, int width, int precision, int size);
 /****************** FUNCTIONS ******************/
 
 /* Funtions to print chars and strings */

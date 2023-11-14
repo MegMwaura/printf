@@ -1,36 +1,47 @@
 #include "main.h"
 
-int _printf(const char *format, ...) {
-    va_list list;
-    char buffer[BUFF_SIZE];
-    int i = 0;  /* Assuming i is the position in the format string */
-    int count = 0;
+/**
+ * _printf - Produces output according to a format
+ * @format: The format
+ * Return: The number of characters printed
+ */
 
-    va_start(list, format);
+int _printf(const char *format, ...)
+{
+	va_list list;
+	char buffer[BUFF_SIZE];
+	int i = 0;  /* Assuming i is the position in the format string */
+	int count = 0;
 
-    while (format && format[i] != '\0') {
-        if (format[i] != '%') {
-            buffer[count++] = format[i];
-            if (count == BUFF_SIZE) {
-                /* Handle buffer overflow */
-            }
-        } else {
-            int flags = get_flags(format, &i);
-            int width = get_width(format, &i, list);
-            int precision = get_precision(format, &i, list);
-            int size = get_size(format, &i);
+	va_start(list, format);
 
-            count += handle_print(format, list, buffer, flags, width, precision, size);
-        }
+	while (format && format[i] != '\0')
+	{
+	if (format[i] != '%')
+	{
+	buffer[count++] = format[i];
+	if (count == BUFF_SIZE)
+	/* Handle buffer overfloq*/
+	}
+	}
+		else
+		{
+		int flags = get_flags(format, &i);
+		int width = get_width(format, &i, list);
+		int precision = get_precision(format, &i, list);
+		int size = get_size(format, &i);
 
-        i++;
-    }
+	count += handle_print(format, list, buffer, flags, width, precision, size);
+	}
 
-    /* Ensure null-termination of the buffer */
-    buffer[count] = '\0';
+	i++;
+	}
 
-    /* Print or use the formatted output as needed */
+	/* Ensure null-termination of the buffer */
+	buffer[count] = '\0';
 
-    va_end(list);
-    return count;
+	/* Print or use the formatted output as needed */
+
+	va_end(list);
+	return (count);
 }
